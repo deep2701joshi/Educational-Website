@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* Your CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .remove-btn {
+            color: white;
+            background-color: red;
+            border: none;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            background-color: #0a0a0a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Additional CSS styles provided */
+        body{
+            background: linear-gradient(110deg, #BBDEFB 60%,#42A5F5  60%);                        
+        }
+
+        /* Add the rest of your CSS styles here */
+        .shop {
+            font-size: 10px;
+        }
+
+        .space {
+            letter-spacing: 0.8px !important;
+        }
+
+        .second a:hover {
+            color: rgb(92, 92, 92);
+        }
+
+        .active-2 {
+            color: rgb(92, 92, 92);
+        }
+
+        .breadcrumb>li+li:before {
+            content: "" !important;
+        }
+
+        .breadcrumb {
+            padding: 0px;
+            font-size: 10px;
+            color: #aaa !important;
+        }
+
+        .first {
+            background-color: white;
+        }
+
+        a {
+            text-decoration: none !important;
+            color: #aaa;
+        }
+
+        .btn-lg,
+        .form-control-sm:focus,
+        .form-control-sm:active,
+        a:focus,
+        a:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .form-control-sm:focus {
+            border: 1.5px solid #4bb8a9;
+        }
+
+        .btn-group-lg>.btn,
+        .btn-lg {
+            padding: .5rem 0.1rem;
+            font-size: 1rem;
+            border-radius: 0;
+            color: white !important;
+            background-color: #d3e6e3;
+            height: 2.8rem !important;
+            border-radius: 0.2rem !important;
+        }
+
+        .btn-group-lg>.btn:hover,
+        .btn-lg:hover {
+            background-color: #26A69A;
+        }
+
+        .btn-outline-primary {
+            background-color: #fff !important;
+            color: #4bb8a9 !important;
+            border-radius: 0.2rem !important;
+            border: 1px solid #4bb8a9;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #4bb8a9 !important;
+            color: #fff !important;
+            border: 1px solid #4bb8a9;
+        }
+
+        .card-2 {
+            margin-top: 40px !important;
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: 0px solid #aaaa !important;
+        }
+
+        p {
+            font-size: 13px;
+        }
+
+        .small {
+            font-size: 9px !important;
+        }
+
+        .form-control-sm {
+            height: calc(2.2em + .5rem + 2px);
+            font-size: .875rem;
+            line-height: 1.5;
+            border-radius: 0;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .boxed {
+            padding: 0px 8px 0 8px;
+            background-color: #4bb8a9;
+            color: white;
+        }
+
+        .boxed-1 {
+            padding: 0px 8px 0 8px;
+            color: black !important;
+            border: 1px solid #aaaa;
+        }
+
+        .bell {
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        @media (max-width: 767px) {
+            .breadcrumb-item+.breadcrumb-item {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+
+    <div class="cart-items">
+        <% if (items.length > 0) { %>
+            <% var totalSum = 0; %>
+            <% items.forEach((item, index) => { %>
+                <div class="cart-item">
+                    <div class="item-details">
+                        <h2><%= item.title %></h2>
+                        <p>Price: $<%= item.price %></p>
+                        <!-- Add any additional item details here -->
+                    </div>
+                    <button class="remove-btn" data-index="<%= index %>">Remove</button>
+                </div>
+                <% totalSum += item.price; %>
+            <% }); %>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+        <% } %>
+        <button class="back-btn" type="button"><a href="/courses">Back to course page</a></button>
+        <button class="back-btn" type="button"><a href="/pay">Pay Now!!</a></button>
+    </div>
+
+    <div class="total">
+        <strong>Total:</strong> $<span id="totalAmount"><%= totalSum %></span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all remove buttons
+            var removeButtons = document.querySelectorAll('.remove-btn');
+
+            // Add click event listener to each remove button
+            removeButtons.forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    var index = event.target.getAttribute('data-index');
+                    // Send request to remove item at 'index' from the cart
+                    // For example, you can use AJAX to send a request to your server to remove the item
+                    // Once the item is successfully removed, you can remove the corresponding HTML element from the page
+                    // For demonstration purposes, let's just remove the HTML element from the page without sending any request
+                    var cartItem = button.closest('.cart-item');
+                    cartItem.parentNode.removeChild(cartItem);
+                    // Recalculate total sum
+                    var totalSumElement = document.getElementById('totalAmount');
+                    var totalSum = 0;
+                    var cartItems = document.querySelectorAll('.cart-item');
+                    cartItems.forEach(function(item) {
+                        var price = parseFloat(item.querySelector('p').textContent.replace('Price: $', ''));
+                        totalSum += price;
+                    });
+                    totalSumElement.textContent = totalSum.toFixed(2);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

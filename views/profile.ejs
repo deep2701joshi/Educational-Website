@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        #section:hover {
+            /* Add your hover styles here */
+        }
+    </style>
+</head>
+<body>
+
+    <select name="drop1" id="section">
+        <% if (username) { %>
+            <option value="in">
+                Welcome, <%= username %>!
+            </option>
+            <option value="logout">
+                <form action="/logout" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
+            </option>
+        <% } else { %>
+            <option value="login">
+                <form action="/login" method="POST">
+                    <button type="submit">Login</button>
+                </form>
+            </option>
+        <% } %> 
+    </select>
+</body>
+</html>

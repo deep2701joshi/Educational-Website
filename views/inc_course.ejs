@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        form input[type="text"],
+        form input[type="number"] {
+            width: calc(100% - 12px);
+            margin-bottom: 10px;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        form input[type="submit"],
+        #hello {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #hello {
+            background-color:lightgreen;
+        }
+    </style>
+</head>
+<body>
+   
+    <form action="include" method="post">
+        <h3><center>Add Courses!!</center></h3>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title">
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price">
+        <br>
+        <label for="des">Description:</label>
+        <input type="text" name="des" id="des">
+        <br>
+        <input type="submit" name="submit" value="Submit">
+        <button id="hello"><a href="index">Back to Home Page</a></button>
+    </form>
+</body>
+</html>
